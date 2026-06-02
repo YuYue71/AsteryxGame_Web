@@ -1,7 +1,7 @@
 {
   "portfolios": [
     {
-      "id": "project-001",
+      "id": "project-000",
       "title": { "zh": "星之記憶", "en": "Stellar Memory" },
       "description": {
         "zh": "一款基於星空宇宙觀演算法生成的橫卷軸獨立遊戲，探索時間與重力的邊界。",
@@ -14,16 +14,16 @@
   ],
   "team": [
     {
-      "id": "member-001",
-      "name": { "zh": "蒼藍星", "en": "Cyan Star" },
-      "role": { "zh": "核心邏輯 / 架構師", "en": "Core Logic / Architect" },
+      "id": "member-000",
+      "name": { "zh": "幽月", "en": "YuYue" },
+      "role": { "zh": "遊戲總監 | 技術總監 | 核心開發者 | 企劃 | 關卡設計師 | 編劇 | 客戶端工程師 | 後端工程師 | 美術總監 | 概念設計師 | 特效師 | UI/UX 設計師 | 音效總監 | 音效設計師 | 音訊工程師 | 測試員", "en": "Game Director | Technical Director | Core Developer | Game Designer | Level Designer | Narrative Designer | Client Programmer | Backend Programmer | Art Director | Concept Artist | VFX Artist | UI/UX Designer | Audio Director | Sound Designer | Audio Programmer | QA Engineer" },
       "avatar": "assets/images/team/member1.jpg"
     },
     {
-      "id": "member-002",
+      "id": "member-001",
       "name": { "zh": "星雲", "en": "Nebula" },
       "role": { "zh": "美術總監 / 前端介面", "en": "Art Director / Frontend" },
-      "avatar": "assets/images/team/member2.jpg"
+      "avatar": "assets/images/team/yuyue.jpg"
     }
   ],
   "contact": {
