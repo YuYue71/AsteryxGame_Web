@@ -1,0 +1,58 @@
+/**
+ * @file hero.css
+ * @responsibility 控制首頁 Section 的彈性垂直置中對齊，以及打字機文字樣式與游標閃爍動畫。
+ */
+
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: transparent;
+  padding: 0; /* 首頁全畫面置中，不需頂部內邊距 */
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 打字機主體文字標題 */
+.typing-target {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: var(--text-stellar-white);
+  text-shadow: 0 0 20px rgba(123, 181, 255, 0.6); /* 增加星簇高光效果 */
+  min-height: 4.5rem; /* 固定最小高度，防止字串清除時容器塌陷導致網頁抖動 */
+}
+
+/* 閃爍游標元件 (Blinking Terminal Cursor) */
+.typing-cursor {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--accent-star-glow);
+  margin-left: 8px;
+  animation: cursorBlink 0.8s infinite steps(2, start);
+}
+
+/* 游標閃爍動態規律 (Steps Timing Function Animation) */
+@keyframes cursorBlink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 針對行動裝置進行微調的響應式中斷點 (Responsive Fluid Breakpoint) */
+@media (max-width: 768px) {
+  .typing-target, .typing-cursor {
+    font-size: 2.2rem;
+  }
+  .typing-target {
+    min-height: 3rem;
+  }
+}

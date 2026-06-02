@@ -1,0 +1,93 @@
+/**
+ * @file navbar.css
+ * @responsibility 控制頂部固定式導覽列的毛玻璃特效、響應式排版以及多國語言切換鈕的視覺樣式。
+ */
+
+.studio-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80px;
+  background: rgba(2, 2, 8, 0.6);
+  backdrop-filter: blur(12px); /* 毛玻璃透明深空特效 */
+  border-bottom: 1px solid rgba(123, 181, 255, 0.1);
+  z-index: 1000; /* 確保永遠置頂 */
+  transition: var(--transition-smooth);
+}
+
+.nav-container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(45deg, var(--text-stellar-white), var(--accent-star-glow));
+  
+  /* Standard Alignment: Vendor prefixes must pair with standard fallback rules (標準屬性對齊) */
+  -webkit-background-clip: text;
+  background-clip: text;           /* Fixes standard compatibility (修復標準相容性) */
+  -webkit-text-fill-color: transparent; /* Text layer alpha masking (文字圖層透明化) */
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-nebula-gray);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+/* 導覽列懸停星軌底線動畫 (Stellar Track Animation) */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-star-glow);
+  transition: var(--transition-smooth);
+}
+
+.nav-links a:hover {
+  color: var(--text-stellar-white);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* 語系切換按鈕視覺 */
+.lang-btn {
+  background: transparent;
+  border: 1px solid var(--accent-star-glow);
+  color: var(--accent-star-glow);
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: var(--transition-smooth);
+}
+
+.lang-btn:hover {
+  background: var(--accent-star-glow);
+  color: var(--bg-space-dark);
+  box-shadow: 0 0 12px var(--accent-star-glow);
+}

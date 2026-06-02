@@ -1,0 +1,167 @@
+/**
+ * @file contact.css (不對稱主動網格優化版)
+ */
+
+/* 二維主網格 */
+.contact-master-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* 左右不對稱黃金比例 */
+  gap: 4rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* ==========================================
+   左縱列：狀態與中繼資料
+   ========================================== */
+.contact-status-pillar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 活體呼吸燈徽章 */
+.studio-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 255, 136, 0.04);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  padding: 6px 16px;
+  border-radius: 30px;
+  width: fit-content;
+  margin-bottom: 1.5rem;
+}
+
+.status-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff88;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+.status-text {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #00ff88;
+  letter-spacing: 1px;
+}
+
+.pillar-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-nebula-gray);
+  margin-bottom: 2rem;
+}
+
+.meta-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.meta-item strong {
+  color: var(--accent-nebula-purple);
+  margin-right: 8px;
+}
+
+.social-links-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-item {
+  padding: 10px 20px;
+  background: rgba(164, 140, 255, 0.03);
+  border: 1px solid rgba(164, 140, 255, 0.15);
+  border-radius: 6px;
+  color: var(--text-stellar-white);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: var(--transition-smooth);
+}
+
+.social-item:hover {
+  border-color: var(--accent-star-glow);
+  background: rgba(123, 181, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   右縱列：極簡通訊投遞表單
+   ========================================== */
+.contact-form-pillar {
+  background: rgba(15, 11, 35, 0.35);
+  border: 1px solid rgba(164, 140, 255, 0.08);
+  border-radius: 12px;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background: rgba(5, 4, 15, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 14px;
+  color: var(--text-stellar-white);
+  font-family: var(--font-studio-core);
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-nebula-purple);
+  box-shadow: 0 0 10px rgba(164, 140, 255, 0.15);
+  background: rgba(10, 8, 25, 0.8);
+}
+
+/* 表單提交發射按鈕 */
+.form-submit-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--accent-nebula-purple);
+  padding: 14px;
+  border-radius: 6px;
+  color: var(--accent-nebula-purple);
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition-smooth);
+}
+
+.form-submit-btn:hover {
+  background: var(--accent-nebula-purple);
+  color: var(--bg-space-dark);
+  box-shadow: 0 0 15px var(--accent-nebula-purple);
+}
+
+/* 呼吸燈動畫 */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 12px #00ff88; }
+}
+
+/* 響應式斷點斷裂防禦 */
+@media (max-width: 868px) {
+  /* Function: Resets dual-column grid to vertical stack flow */
+  .contact-master-grid {
+    grid-template-columns: 1fr; /* Single column fallback (單縱列降級) */
+    gap: 3rem;                  /* Spacing delta reduction (間距縮減) */
+  }
+}

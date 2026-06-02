@@ -1,0 +1,93 @@
+/**
+ * @file main.css (微調宇宙深淵紫調版)
+ */
+
+:root {
+  /* 保留原本深空底色並混入極深暗紫，建立色差深淵 */
+  --bg-space-dark: #03020a;       
+  --bg-abyss-purple: #0f0a21;     /* 新增：深淵紫核心層 */
+  --text-stellar-white: #f5f5fa;  
+  --text-nebula-gray: #a5a5c0;   
+  --accent-star-glow: #7bb5ff;   /* 保留原有恆星藍 */
+  --accent-nebula-purple: #a48cff; /* 新增：星雲紫高光點 */
+  --font-studio-core: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-studio-core);
+  background-color: var(--bg-space-dark);
+  color: var(--text-stellar-white);
+  overflow-x: hidden;
+}
+
+/* 背景畫布：融合暗紫星團漸層 (Retuned Radial Color Space) */
+#starfield-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 60% 40%, var(--bg-abyss-purple) 0%, var(--bg-space-dark) 100%);
+}
+
+.viewport-section {
+  min-height: 100vh;
+  width: 100vw;
+  padding: 120px 10% 80px 10%;
+  position: relative;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  margin-bottom: 3rem;
+  color: var(--text-stellar-white);
+  border-left: 4px solid var(--accent-nebula-purple); /* 標題左側條更換為星雲紫 */
+  padding-left: 15px;
+}
+
+/* ==========================================================================
+   需求 4: 頁尾元件基礎排版規範 (Studio Footer Specification)
+   ========================================================================== */
+.studio-footer {
+  width: 100vw;
+  padding: 4rem 10% 2rem 10%;
+  background: rgba(3, 2, 10, 0.85);
+  border-top: 1px solid rgba(164, 140, 255, 0.08); /* 紫光微弱分界線 */
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 10;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.footer-quote {
+  font-size: 0.95rem;
+  color: var(--accent-nebula-purple);
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: var(--text-nebula-gray);
+  letter-spacing: 1px;
+}

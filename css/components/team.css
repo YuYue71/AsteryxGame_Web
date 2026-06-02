@@ -1,0 +1,47 @@
+/**
+ * @file team.css
+ * @responsibility 控制「星群觀測者」成員網格與極簡名片排版。
+ */
+
+.team-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.team-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #151530;
+  border: 2px solid rgba(123, 181, 255, 0.3);
+  margin: 0 auto 1.5rem auto;
+}
+
+.team-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.team-role {
+  font-size: 0.85rem;
+  color: var(--accent-star-glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.team-card:hover {
+  border-color: rgba(123, 181, 255, 0.4);
+  background: rgba(123, 181, 255, 0.03);
+}

@@ -1,0 +1,106 @@
+/**
+ * @file portfolio.css
+ * @responsibility 定義作品集響應式網格 (CSS Grid Layout) 以及卡片內縮、圖片遮罩與科技光暈懸停動畫。
+ */
+
+/* 網格容器配置 */
+.portfolio-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 自動落點響應式分配 */
+  gap: 2.5rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* 獨立卡片主體 (Card Shell Component) */
+.portfolio-card {
+  background: rgba(15, 15, 35, 0.45);
+  border: 1px solid rgba(123, 181, 255, 0.15);
+  border-radius: 12px;
+  text-decoration: none; /* 移除超連結下底線 */
+  color: inherit;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(8px); /* 輕微透出底層星空背景 */
+}
+
+/* 圖片外殼與裁切機制 */
+.card-image-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background: #050510;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 確保縮放時圖片不變形 */
+  transition: var(--transition-smooth);
+}
+
+/* 資訊層區塊 */
+.card-info-pane {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* 確保按鈕高度齊平 */
+}
+
+.card-project-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-stellar-white);
+  transition: var(--transition-smooth);
+}
+
+.card-project-desc {
+  font-size: 0.95rem;
+  color: var(--text-nebula-gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* 標籤元件集 */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-token {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: rgba(123, 181, 255, 0.1);
+  border: 1px solid rgba(123, 181, 255, 0.25);
+  border-radius: 4px;
+  color: var(--accent-star-glow);
+  letter-spacing: 0.5px;
+}
+
+/* 核心懸停動畫矩陣 (Micro-Interaction Hover Matrix) */
+.portfolio-card:hover {
+  transform: translateY(-8px); /* 卡片上浮 */
+  border-color: var(--accent-star-glow); /* 邊框亮起 */
+  box-shadow: 0 12px 30px rgba(123, 181, 255, 0.15); /* 擴散恆星藍光暈 */
+}
+
+.portfolio-card:hover .card-img {
+  transform: scale(1.06); /* 圖片輕微放大 */
+}
+
+.portfolio-card:hover .card-project-title {
+  color: var(--accent-star-glow); /* 標題變色 */
+}
+
+/* 錯誤降級顯示樣式 */
+.error-fallback {
+  color: #ff6b6b;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}

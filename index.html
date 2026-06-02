@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星簇 Asteryx Studio | 官方網站</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components/navbar.css">
+  <link rel="stylesheet" href="css/components/hero.css">
+  <link rel="stylesheet" href="css/components/portfolio.css">
+  <link rel="stylesheet" href="css/components/team.css">
+  <link rel="stylesheet" href="css/components/contact.css">
+</head>
+<body>
+
+  <canvas id="starfield-canvas"></canvas>
+
+  <header class="studio-navbar">
+    <div class="nav-container">
+      <div class="logo">Asteryx</div>
+      <nav class="nav-links">
+        <a href="#home" data-i18n="navHome">首頁</a>
+        <a href="#portfolio" data-i18n="navPortfolio">作品展示</a>
+        <a href="#team" data-i18n="navTeam">成員介紹</a>
+        <a href="#contact" data-i18n="navContact">聯絡我們</a>
+      </nav>
+      <button id="lang-switch-btn" class="lang-btn">EN</button>
+    </div>
+  </header>
+
+  <main class="viewport-wrapper">
+
+    <section id="home" class="viewport-section hero-section">
+      <div class="hero-content">
+        <h1 id="typing-heading" class="typing-target"></h1>
+        <span class="typing-cursor">|</span>
+      </div>
+    </section>
+
+    <section id="portfolio" class="viewport-section portfolio-section">
+      <h2 class="section-title" data-i18n="sectionPortfolioTitle">星軌作品</h2>
+      <div id="portfolio-grid" class="portfolio-grid-container"></div>
+    </section>
+
+    <section id="team" class="viewport-section team-section">
+      <h2 class="section-title" data-i18n="sectionTeamTitle">星群觀測者</h2>
+      <div id="team-grid" class="team-grid-container"></div>
+    </section>
+
+    <section id="contact" class="viewport-section contact-section">
+      <h2 class="section-title" data-i18n="sectionContactTitle">建立星際連結</h2>
+      
+      <div class="contact-master-grid">
+        
+        <div class="contact-status-pillar">
+          <div class="studio-status-badge">
+            <span class="status-pulse-dot"></span>
+            <span class="status-text">CORE NODE: ONLINE / ACTIVE</span>
+          </div>
+          <p class="pillar-desc">
+            歡迎各界冒險者一同交流、協作，或分享任何想法與建議！
+          </p>
+          <p class="pillar-desc">
+            welcome all adventurers to connect, collaborate, or share any ideas and suggestions!
+          </p>
+          <div class="meta-info-list">
+            <div class="meta-item"><strong>LOCATION:</strong> Taiwan</div>
+            <div class="meta-item"><strong>EMAIL:</strong> asteryxgame@gmail.com</div>
+          </div>
+          <div id="social-links-cluster" class="social-links-wrapper"></div>
+        </div>
+
+        <div class="contact-form-pillar">
+          <form id="galaxy-contact-form" action="https://formsubmit.co/asteryxgame@gmail.com" method="POST">
+            <input type="hidden" name="_next" value="https://asteryx.studio">
+            <div class="form-group">
+              <input type="email" id="form-email-input" name="email" placeholder="Your Email / 星際通訊位址" required autocomplete="off">
+            </div>
+            <div class="form-group">
+              <textarea id="form-msg-input" name="message" placeholder="Transmission Message / 欲投遞的訊息內容..." rows="4" required></textarea>
+            </div>
+            <button type="submit" class="form-submit-btn">
+              <span>LAUNCH TRANSMISSION / 發射訊號</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="studio-footer">
+    <div class="footer-container">
+      <p id="footer-quote-node" class="footer-quote"></p>
+      <p id="footer-copyright-node" class="footer-copyright"></p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "portfolios": [
+    {
+      "id": "project-001",
+      "title": { "zh": "星之記憶", "en": "Stellar Memory" },
+      "description": {
+        "zh": "一款基於星空宇宙觀演算法生成的橫卷軸獨立遊戲，探索時間與重力的邊界。",
+        "en": "A side-scrolling indie game built on star-cluster generation algorithms, exploring boundaries of time and gravity."
+      },
+      "image": "assets/images/portfolio/stellar_memory.jpg",
+      "url": "https://asteryx.studio/games/stellar-memory",
+      "tags": ["2D", "Sci-Fi", "Unity"]
+    }
+  ],
+  "team": [
+    {
+      "id": "member-001",
+      "name": { "zh": "蒼藍星", "en": "Cyan Star" },
+      "role": { "zh": "核心邏輯 / 架構師", "en": "Core Logic / Architect" },
+      "avatar": "assets/images/team/member1.jpg"
+    },
+    {
+      "id": "member-002",
+      "name": { "zh": "星雲", "en": "Nebula" },
+      "role": { "zh": "美術總監 / 前端介面", "en": "Art Director / Frontend" },
+      "avatar": "assets/images/team/member2.jpg"
+    }
+  ],
+  "contact": {
+    "socials": [
+      { "platform": "Discord", "url": "https://discord.gg/6VvjvE6u4T" },
+      { "platform": "GitHub", "url": "https://github.com/YuYue71" }
+    ],
+    "footer": {
+      "copyright": "© 2026 Asteryx Studio. All Rights Reserved.",
+      "declaration": {
+        "zh": "縱使繁星熄滅，創意的核心永不崩塌。",
+        "en": "Even if the stars go out, the core of creativity never collapses."
+      }
+    }
+  }
+}
