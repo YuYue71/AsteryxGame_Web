@@ -31,7 +31,7 @@
   font-weight: 800;
   letter-spacing: 2px;
   background: linear-gradient(45deg, var(--text-stellar-white), var(--accent-star-glow));
-  
+    -webkit-background-clip: text;
   /* Standard Alignment: Vendor prefixes must pair with standard fallback rules (標準屬性對齊) */
   -webkit-background-clip: text;
   background-clip: text;           /* Fixes standard compatibility (修復標準相容性) */
