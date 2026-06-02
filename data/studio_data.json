@@ -2,14 +2,14 @@
   "portfolios": [
     {
       "id": "project-000",
-      "title": { "zh": "星之記憶", "en": "Stellar Memory" },
+      "title": { "zh": "0s測試", "en": "0sTest" },
       "description": {
-        "zh": "一款基於星空宇宙觀演算法生成的橫卷軸獨立遊戲，探索時間與重力的邊界。",
-        "en": "A side-scrolling indie game built on star-cluster generation algorithms, exploring boundaries of time and gravity."
+        "zh": "香香的甘城",
+        "en": "uwu"
       },
-      "image": "assets/images/portfolio/stellar_memory.jpg",
-      "url": "https://asteryx.studio/games/stellar-memory",
-      "tags": ["2D", "Sci-Fi", "Unity"]
+      "image": "https://github.com/YuYue71/AsteryxGame_Web/blob/main/images/portfolio/test.png?raw=true",
+      "url": "https://#",
+      "tags": ["test", "2D", "Sci-Fi", "Unity", "test"]
     }
   ],
   "team": [

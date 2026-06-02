@@ -14,32 +14,47 @@
 
 /* 獨立卡片主體 (Card Shell Component) */
 .portfolio-card {
-  background: rgba(15, 15, 35, 0.45);
-  border: 1px solid rgba(123, 181, 255, 0.15);
-  border-radius: 12px;
-  text-decoration: none; /* 移除超連結下底線 */
-  color: inherit;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  background: rgba(15, 11, 35, 0.45); /* 卡片底色 */
+  border: 1px solid rgba(164, 140, 255, 0.08);
+  border-radius: 12px;
+  text-decoration: none;
   transition: var(--transition-smooth);
-  backdrop-filter: blur(8px); /* 輕微透出底層星空背景 */
+  
+  /* 關鍵修改：為卡片四周加上 16px 的內襯距，製造上下左右的間隙 */
+  padding: 14px; 
+  
+  box-sizing: border-box; /* 確保 padding 不會撐大卡片原本設定的寬度 */
 }
 
 /* 圖片外殼與裁切機制 */
 .card-image-wrapper {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  height: 200px;             /* 根據設計固定高度 */
   position: relative;
-  background: #050510;
+  
+  /* 圓角框核心屬性 */
+  border-radius: 20px;       /* 圓角弧度：可根據喜好微調 (8px~14px) */
+  overflow: hidden;          /* 關鍵：強制切除內部圖片超出圓角的直角邊緣 */
+  
+  /* 質感提升：加入半透明深色邊框線 (Subtle Inner Border) */
+  border: 1px solid rgba(164, 140, 255, 0.15); 
+  
+  /* 質感提升：加入細微暗部陰影，增加立體層次感 (Depth Shadow) */
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+  
+  transition: var(--transition-smooth);
 }
 
 .card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 確保縮放時圖片不變形 */
-  transition: var(--transition-smooth);
+  object-fit: cover;         /* 保持圖片比例並填滿容器 */
+  display: block;
+  
+  /* 順應外框的過渡動畫 (隨卡片懸停時放大，增加互動質感) */
+  transition: transform 0.4s ease-in-out;
 }
 
 /* 資訊層區塊 */
@@ -103,4 +118,26 @@
   color: #ff6b6b;
   font-size: 1.1rem;
   letter-spacing: 1px;
+}
+
+/* 互動優化：當滑鼠懸停在整張卡片上時，圖片微放大且邊框微亮 */
+.portfolio-card:hover .card-image-wrapper {
+  border-color: var(--accent-star-glow); /* 邊框變為星光藍/白 */
+  box-shadow: 0 0 15px rgba(123, 181, 255, 0.2); /* 外發光特效 */
+}
+
+.portfolio-card:hover .card-img {
+  transform: scale(1.05);    /* 圖片稍微放大 5%，製造鏡頭拉近的視覺深淺感 */
+}
+
+.card-info-pane {
+  /* 因為卡片整體加了 padding，原本緊貼邊緣的文字需要微調 margin */
+  margin-top: 14px;  /* 圖片下緣與文字標題之間的精細間距 */
+  padding: 0 4px;    /* 讓文字左右側比圖片再往內縮一點，更有層次感 */
+}
+
+.portfolio-card:hover {
+  border-color: rgba(164, 140, 255, 0.3);
+  background: rgba(20, 15, 45, 0.6);
+  transform: translateY(-4px);
 }
