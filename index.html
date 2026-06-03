@@ -19,17 +19,23 @@
   <canvas id="starfield-canvas"></canvas>
 
   <header class="studio-navbar">
-    <div class="nav-container">
-      <div class="logo">Asteryx</div>
-      <nav class="nav-links">
-        <a href="#home" data-i18n="navHome">首頁</a>
-        <a href="#portfolio" data-i18n="navPortfolio">作品展示</a>
-        <a href="#team" data-i18n="navTeam">成員介紹</a>
-        <a href="#contact" data-i18n="navContact">聯絡我們</a>
-      </nav>
-      <button id="lang-switch-btn" class="lang-btn">EN</button>
-    </div>
-  </header>
+      <div class="navbar-container">
+        <a href="#" class="logo">Asteryx</a>
+        
+        <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+    
+        <nav class="nav-menu" id="stage-nav-menu">
+          <a href="#hero" class="nav-link" data-i18n="nav_home">首頁</a>
+          <a href="#portfolio" class="nav-link" data-i18n="nav_portfolio">作品集</a>
+          <a href="#team" class="nav-link" data-i18n="nav_team">團隊介紹</a>
+          <a href="#contact" class="nav-link" data-i18n="nav_contact">聯絡我們</a>
+        </nav>
+      </div>
+    </header>
 
   <main class="viewport-wrapper">
 
