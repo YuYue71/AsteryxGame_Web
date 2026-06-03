@@ -1,47 +1,95 @@
 /**
  * @file team.css
- * @responsibility 控制「星群觀測者」成員網格與極簡名片排版。
+ * @responsibility 負責團隊成員網格佈局與全卡面點擊跳轉之互動防禦
  */
 
-.team-grid-container {
+/* 團隊區塊網格容器 */
+#team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
 }
 
+/* 成員卡片本體 (此時已改為 <a> 標籤，進行防禦性樣式清除) */
 .team-card {
+  display: flex;
+  flex-direction: column;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  transition: var(--transition-smooth);
+  border: 1px solid rgba(164, 140, 255, 0.05);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  text-decoration: none; /* 阻斷超連結預設底線 */
+  color: inherit;         /* 阻斷超連結預設藍色，繼承主字體顏色 */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
-.team-avatar {
+/* 針對有配置連結的卡片：滑鼠懸停觸發光暈與上浮 */
+.team-card.clickable-card {
+  cursor: pointer;
+}
+
+.team-card.clickable-card:hover {
+  transform: translateY(-5px);
+  background: rgba(164, 140, 255, 0.03); /* 輕微渲染主題紫 */
+  border-color: rgba(164, 140, 255, 0.25); /* 邊框亮起 */
+  box-shadow: 0 10px 30px rgba(11, 7, 28, 0.6), 
+              0 0 20px rgba(164, 140, 255, 0.1); /* 外發光 */
+}
+
+/* 針對無連結卡片：指標退回預設 */
+.team-card.static-card {
+  cursor: default;
+}
+
+/* 頭像外層圓形剪裁封裝 */
+.avatar-wrapper {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: #151530;
-  border: 2px solid rgba(123, 181, 255, 0.3);
-  margin: 0 auto 1.5rem auto;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 2px solid rgba(164, 140, 255, 0.1);
+  transition: border-color 0.4s ease;
+}
+
+.team-card.clickable-card:hover .avatar-wrapper {
+  border-color: var(--accent-star-glow, #a48cff); /* 懸停時頭像框跟著亮起 */
+}
+
+/* 頭像圖片本體與拉近效果 */
+.member-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 確保頭像不縮放變形 */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-card.clickable-card:hover .member-avatar {
+  transform: scale(1.08); /* ✦ 點擊全卡面時，頭像微幅拉近 ✦ */
+}
+
+/* 文字排版容器 */
+.member-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .team-name {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  color: var(--text-stellar-white, #ffffff);
+  margin: 0;
 }
 
 .team-role {
-  font-size: 0.85rem;
-  color: var(--accent-star-glow);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.team-card:hover {
-  border-color: rgba(123, 181, 255, 0.4);
-  background: rgba(123, 181, 255, 0.03);
+  font-size: 0.9rem;
+  color: var(--accent-star-glow, #a48cff);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.85;
 }

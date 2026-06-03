@@ -75,21 +75,32 @@ class DynamicHydrator {
     }).join('');
   }
 
-  hydrateTeam(data, lang) {
+hydrateTeam(data, lang) {
     const container = document.getElementById('team-grid');
     if (!container) return;
     
     container.innerHTML = data.map(member => {
+      // 1. 安全邊界：維持原有的多國語言欄位防禦 (Null Defensive Guard)
       const name = member.name ? (member.name[lang] || member.name['zh'] || 'Anonymous') : 'Anonymous';
       const role = member.role ? (member.role[lang] || member.role['zh'] || 'Staff') : 'Staff';
       const avatar = member.avatar || 'assets/images/team/fallback.jpg';
 
+      // 2. 核心增強：解析最新 JSON 內嵌的 link 欄位，實作空值與無效錨點防禦
+      const hasLink = member.link && member.link.trim() !== "" && member.link !== "#";
+      const hrefAttr = hasLink ? `href="${member.link}" target="_blank" rel="noopener noreferrer"` : 'href="javascript:void(0);"';
+      const cardClass = hasLink ? 'team-card clickable-card' : 'team-card static-card';
+
+      // 3. 結構重構：升級外層為 <a> 標籤，並將頭像改為 <img> 以便後續 CSS 製作 Scale 特效
       return `
-        <div class="team-card">
-          <div class="team-avatar" style="background-image: url('${avatar}'); background-size: cover; background-position: center;"></div>
-          <h3 class="team-name">${name}</h3>
-          <p class="team-role">${role}</p>
-        </div>
+        <a ${hrefAttr} class="${cardClass}" data-id="${member.id}">
+          <div class="avatar-wrapper">
+            <img src="${avatar}" alt="${name}" loading="lazy" class="member-avatar">
+          </div>
+          <div class="member-info">
+            <h3 class="team-name">${name}</h3>
+            <p class="team-role">${role}</p>
+          </div>
+        </a>
       `;
     }).join('');
   }

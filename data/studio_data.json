@@ -17,13 +17,15 @@
       "id": "member-000",
       "name": { "zh": "幽月", "en": "YuYue" },
       "role": { "zh": "遊戲總監 | 技術總監 | 核心開發者 | 企劃 | 關卡設計師 | 編劇 | 客戶端工程師 | 後端工程師 | 美術總監 | 概念設計師 | 特效師 | UI/UX 設計師 | 音效總監 | 音效設計師 | 音訊工程師 | 測試員", "en": "Game Director | Technical Director | Core Developer | Game Designer | Level Designer | Narrative Designer | Client Programmer | Backend Programmer | Art Director | Concept Artist | VFX Artist | UI/UX Designer | Audio Director | Sound Designer | Audio Programmer | QA Engineer" },
-      "avatar": "https://github.com/YuYue71/AsteryxGame_Web/blob/main/images/team/yuyue.jpg?raw=true"
+      "avatar": "https://github.com/YuYue71/AsteryxGame_Web/blob/main/images/team/yuyue.jpg?raw=true",
+      "link": "https://github.com/YuYue71"
     },
     {
       "id": "member-001",
       "name": { "zh": "閰哲", "en": "YanZe" },
       "role": { "zh": "美術 | 角色設計師 | 動畫設計師 | 特效美術師 | UI/UX 設計師 | 測試員", "en": "Art | Character Designer | Animator | VFX Artist | UI/UX Designer | QA Engineer" },
-      "avatar": "https://github.com/YuYue71/AsteryxGame_Web/blob/main/images/team/yanze.jpg?raw=true"
+      "avatar": "https://github.com/YuYue71/AsteryxGame_Web/blob/main/images/team/yanze.jpg?raw=true",
+      "link": "https://github.com/YanZe305"
     }
   ],
   "contact": {
