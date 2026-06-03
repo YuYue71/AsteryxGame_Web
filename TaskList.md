@@ -38,13 +38,13 @@
 │       ├── yanze.jpg            # 成員頭像資產
 │       └── yuyue.jpg            # 成員頭像資產
 └── js/
-├── app.js                   # 主引導啟動程序 (System Bootstrap)
-├── config.js                # 靜態字典與中文打字機字串常數 ("創意與發想 | 一切的起源")
-└── modules/
-├── background.js        # 動力學粒子畫布（記憶定錨點與滑鼠二維向量排斥力場）
-├── dynamicHydrator.js   # 資料非同步注入與空值防禦 (Null Defensive)
-├── i18n.js              # 事件驅動多國語言狀態機 (studioLanguageChanged)
-└── portfolioRenderer.js # 作品集專用渲染器
+    ├── app.js                   # 主引導啟動程序 (System Bootstrap)
+    ├── config.js                # 靜態字典與中文打字機字串常數 ("創意與發想 | 一切的起源")
+    └── modules/
+        ├── background.js        # 動力學粒子畫布（記憶定錨點與滑鼠二維向量排斥力場）
+        ├── dynamicHydrator.js   # 資料非同步注入與空值防禦 (Null Defensive)
+        ├── i18n.js              # 事件驅動多國語言狀態機 (studioLanguageChanged)
+        └── portfolioRenderer.js # 作品集專用渲染器
 
 ```
 
