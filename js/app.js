@@ -1,5 +1,7 @@
 /**
  * @file app.js
+ * @function setupMobileNavigation
+ * @description 初始化手機端漢堡選單互動狀態機
  */
 
 import { initStarfield } from './modules/background.js';
@@ -33,3 +35,39 @@ class AppKernel {
 
 const kernel = new AppKernel();
 window.addEventListener('DOMContentLoaded', () => kernel.bootstrap());
+
+function setupMobileNavigation() {
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const navMenu = document.getElementById('stage-nav-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (!menuBtn || !navMenu) return;
+
+  // 1. 點擊漢堡按鈕 ➔ 切換選單狀態
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menuBtn.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+
+  // 2. 點擊任何導覽連結 ➔ 自動關閉選單 (防止點擊錨點後選單依然擋住畫面)
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
+  });
+
+  // 3. 防禦性設計：點擊選單外部空白處自動收合選單
+  document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+      menuBtn.classList.remove('active');
+      navMenu.classList.remove('active');
+    }
+  });
+}
+
+// 確保在 DOM 載入完畢後掛載
+document.addEventListener('DOMContentLoaded', () => {
+  setupMobileNavigation();
+});

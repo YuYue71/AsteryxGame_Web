@@ -1,93 +1,150 @@
 /**
  * @file navbar.css
- * @responsibility 控制頂部固定式導覽列的毛玻璃特效、響應式排版以及多國語言切換鈕的視覺樣式。
+ * @responsibility 負責星簇全域導覽列之桌機端橫向佈局與行動端漢堡選單遮罩防禦
  */
 
+/* ==========================================
+ * 全域導覽列本體 (桌機端基準樣式)
+ * ========================================== */
 .studio-navbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 80px;
-  background: rgba(2, 2, 8, 0.6);
-  backdrop-filter: blur(12px); /* 毛玻璃透明深空特效 */
-  border-bottom: 1px solid rgba(123, 181, 255, 0.1);
-  z-index: 1000; /* 確保永遠置頂 */
-  transition: var(--transition-smooth);
+  width: 100%;
+  height: 70px; /* 固定高度，防止被內容撐開變形 */
+  background: rgba(11, 7, 28, 0.45); /* 透明星空底色 */
+  backdrop-filter: blur(12px); /* 毛玻璃特效 */
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(164, 140, 255, 0.08);
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
-.nav-container {
+/* 限制內部最大寬度並居中 */
+.navbar-container {
   max-width: 1200px;
   height: 100%;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 確保 Logo 在左、選單在右 */
   align-items: center;
 }
 
+/* Logo 漸層字體與相容性修復 */
 .logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  background: linear-gradient(45deg, var(--text-stellar-white), var(--accent-star-glow));
-    -webkit-background-clip: text;
-  /* Standard Alignment: Vendor prefixes must pair with standard fallback rules (標準屬性對齊) */
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(45deg, var(--text-stellar-white, #ffffff), var(--accent-star-glow, #a48cff));
   -webkit-background-clip: text;
-  background-clip: text;           /* Fixes standard compatibility (修復標準相容性) */
-  -webkit-text-fill-color: transparent; /* Text layer alpha masking (文字圖層透明化) */
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
 }
 
-.nav-links {
+/* 桌機端導覽頁籤容器 */
+.nav-menu {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
-.nav-links a {
+/* 頁籤超連結樣式 (防禦瀏覽器藍色預設字體) */
+.nav-link {
+  color: var(--text-stellar-white, #ffffff);
   text-decoration: none;
-  color: var(--text-nebula-gray);
   font-size: 0.95rem;
-  letter-spacing: 1px;
-  transition: var(--transition-smooth);
-  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-/* 導覽列懸停星軌底線動畫 (Stellar Track Animation) */
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-star-glow);
-  transition: var(--transition-smooth);
+.nav-link:hover {
+  color: var(--accent-star-glow, #a48cff);
 }
 
-.nav-links a:hover {
-  color: var(--text-stellar-white);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* 語系切換按鈕視覺 */
-.lang-btn {
+/* 漢堡按鈕本體 (桌機端絕對隱藏) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
   background: transparent;
-  border: 1px solid var(--accent-star-glow);
-  color: var(--accent-star-glow);
-  padding: 6px 14px;
-  border-radius: 20px;
+  border: none;
   cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: var(--transition-smooth);
+  padding: 0;
+  z-index: 1002;
 }
 
-.lang-btn:hover {
-  background: var(--accent-star-glow);
-  color: var(--bg-space-dark);
-  box-shadow: 0 0 12px var(--accent-star-glow);
+.menu-toggle .bar {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff; /* 確保手機端看得到白線 */
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ==========================================
+ * 行動端響應式斷點防禦 (Mobile RWD Matrix < 768px)
+ * ========================================== */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1.5rem; /* 縮減手機端邊距 */
+  }
+
+  /* 解鎖漢堡按鈕顯示 */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* 強制將原本橫向的 nav-menu 改造為滿版滑入遮罩 */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 預設完全退回外太空 (螢幕右側外) */
+    width: 260px;  /* 寬度固定為 260px，精緻的側邊欄質感 */
+    height: 100vh;
+    background: rgba(11, 7, 28, 0.98) !important; /* 加上 !important 強制覆蓋桌機透明度 */
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(164, 140, 255, 0.15);
+    
+    flex-direction: column; /* 轉為縱向排列 */
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 6rem 2rem 2rem 2rem; /* 頂部留空留給 Logo 與關閉按鈕空間 */
+    gap: 2rem;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1001;
+    box-sizing: border-box;
+  }
+
+  /* 當激活狀態機觸發時，滑入螢幕 */
+  .nav-menu.active {
+    right: 0;
+  }
+
+  /* 行動端頁籤樣式微調 */
+  .nav-link {
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(164, 140, 255, 0.05); /* 新增下劃線增加層次感 */
+    color: #ffffff !important; /* 阻斷預設藍色 */
+  }
+
+  /* 漢堡按鈕轉化成「X」動畫控制 */
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: var(--accent-star-glow, #a48cff);
+  }
+  
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: var(--accent-star-glow, #a48cff);
+  }
 }
