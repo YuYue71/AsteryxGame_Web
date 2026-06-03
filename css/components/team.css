@@ -112,14 +112,47 @@
   letter-spacing: 1px;
 }
 
-/* 職稱排版優化：利用 inline-block 形成氣泡或加強分段感 */
-.team-role {
-  font-size: 0.88rem;
+/* 標籤包裹外殼：允許彈性折行，並對齊左側 */
+.team-badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem; /* 縱向與橫向的微量幾何內襯距 */
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+/* 獨立星簇職稱微光標籤 (Stellar Ghost Badge) */
+.role-badge {
+  display: inline-block;
+  font-size: 0.78rem; /* 小巧、精緻的字體外觀 */
+  font-weight: 500;
   color: rgba(164, 140, 255, 0.85); /* 星簇主題紫 */
-  line-height: 1.6;
-  margin: 0;
-  word-break: break-word; /* 防止極長職稱破版 */
+  
+  /* 區隔作品集標籤的核心設計：採用半透明細邊框而非滿版底色 */
+  background: rgba(164, 140, 255, 0.04);
+  border: 1px solid rgba(164, 140, 255, 0.2);
+  border-radius: 6px; /* 略帶科技感的微折角，非完全正圓氣泡 */
+  
+  padding: 0.25rem 0.6rem;
   letter-spacing: 0.5px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 當整張卡片被滑鼠懸停 (Hover) 時，內部所有標籤同步產生發光共振 (Resonance) */
+.team-card.clickable-card:hover .role-badge {
+  color: #ffffff; /* 文字轉為純白點亮 */
+  background: rgba(164, 140, 255, 0.12);
+  border-color: rgba(164, 140, 255, 0.6);
+  box-shadow: 0 0 10px rgba(164, 140, 255, 0.25); /* 微弱的霓虹呼吸燈效果 */
+}
+
+/* 配合行動端響應式防禦：在手機端改為置中排版 */
+@media (max-width: 768px) {
+  .team-badges-container {
+    justify-content: center; /* 手機端標籤居中 */
+  }
 }
 
 /* RWD 行動端防禦：當螢幕太小時自動退回縱向排列，防止寬度不足 */

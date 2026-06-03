@@ -1,6 +1,8 @@
 /**
- * @file dynamicHydrator.js (安全防禦加強版)
- */
+* @file dynamicHydrator.js (Team Role Badge Expansion)
+* @dependency studio_data.json
+* @responsibility 將成員職稱字串解耦為獨立標籤矩陣，實作動態渲染與空值安全防禦。
+*/
 
 class DynamicHydrator {
   constructor() {
@@ -75,14 +77,14 @@ class DynamicHydrator {
     }).join('');
   }
 
-hydrateTeam(data, lang) {
+  hydrateTeam(data, lang) {
     const container = document.getElementById('team-grid');
     if (!container) return;
     
     container.innerHTML = data.map(member => {
       // 1. 安全邊界：維持原有的多國語言欄位防禦 (Null Defensive Guard)
       const name = member.name ? (member.name[lang] || member.name['zh'] || 'Anonymous') : 'Anonymous';
-      const role = member.role ? (member.role[lang] || member.role['zh'] || 'Staff') : 'Staff';
+      const roleRaw = member.role ? (member.role[lang] || member.role['zh'] || 'Staff') : 'Staff';
       const avatar = member.avatar || 'assets/images/team/fallback.jpg';
 
       // 2. 核心增強：解析最新 JSON 內嵌的 link 欄位，實作空值與無效錨點防禦
@@ -90,7 +92,13 @@ hydrateTeam(data, lang) {
       const hrefAttr = hasLink ? `href="${member.link}" target="_blank" rel="noopener noreferrer"` : 'href="javascript:void(0);"';
       const cardClass = hasLink ? 'team-card clickable-card' : 'team-card static-card';
 
-      // 3. 結構重構：升級外層為 <a> 標籤，並將頭像改為 <img> 以便後續 CSS 製作 Scale 特效
+      // 3. 標籤解耦管道：將 "職稱A | 職稱B" 拆解為獨立的 Array (陣列)
+      // 利用 trim() 消除前後空格，確保渲染幾何對稱
+      const roleBadges = roleRaw.split('|')
+        .map(r => r.trim())
+        .filter(r => r.length > 0);
+
+      // 4. 結構重構：移除原本的 <p class="team-role">，升級為 <div class="team-badges-container">
       return `
         <a ${hrefAttr} class="${cardClass}" data-id="${member.id}">
           <div class="avatar-wrapper">
@@ -98,7 +106,9 @@ hydrateTeam(data, lang) {
           </div>
           <div class="member-info">
             <h3 class="team-name">${name}</h3>
-            <p class="team-role">${role}</p>
+            <div class="team-badges-container">
+              ${roleBadges.map(badge => `<span class="role-badge">${badge}</span>`).join('')}
+            </div>
           </div>
         </a>
       `;
