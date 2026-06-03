@@ -1,95 +1,142 @@
 /**
  * @file team.css
- * @responsibility 負責團隊成員網格佈局與全卡面點擊跳轉之互動防禦
+ * @responsibility 定義團隊成員介紹的雙欄式卡片佈局，包含頭像與完整職稱資訊，並加入懸停動畫與行動端響應式防禦。
  */
 
-/* 團隊區塊網格容器 */
+/* 團隊網格容器 (保持自適應響應式彈性) */
 #team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* 最低寬度放大到 450px，給長文字留足橫向舞台 */
   gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 3rem 1.5rem;
 }
 
-/* 成員卡片本體 (此時已改為 <a> 標籤，進行防禦性樣式清除) */
+/* 成員卡片本體 (由純文字改為雙欄彈性佈局) */
 .team-card {
   display: flex;
-  flex-direction: column;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(164, 140, 255, 0.05);
-  border-radius: 12px;
+  flex-direction: row; /* ✦ 關鍵：改為左右分欄，左邊放頭像，右邊放完整資訊 ✦ */
+  align-items: flex-start;
+  gap: 2rem; /* 拉開頭像與文字的物理社交距離 */
+  
+  background: rgba(255, 255, 255, 0.01);  /* 微量極光壓艙 */
+  backdrop-filter: blur(1px);               /* 輕微毛玻璃，鎖住視覺重心 */
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(164, 140, 255, 0.06); /* 星簇主題紫的微弱邊框，增強質感 */
+  border-radius: 16px; /* 更圓潤的高級幾何角 */
   padding: 2.5rem 2rem;
-  text-decoration: none; /* 阻斷超連結預設底線 */
-  color: inherit;         /* 阻斷超連結預設藍色，繼承主字體顏色 */
+  
+  text-decoration: none;
+  color: inherit;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 針對有配置連結的卡片：滑鼠懸停觸發光暈與上浮 */
+/* 點擊狀態與星簇光暈防禦 (Hover Glow) */
 .team-card.clickable-card {
   cursor: pointer;
 }
 
 .team-card.clickable-card:hover {
-  transform: translateY(-5px);
-  background: rgba(164, 140, 255, 0.03); /* 輕微渲染主題紫 */
-  border-color: rgba(164, 140, 255, 0.25); /* 邊框亮起 */
-  box-shadow: 0 10px 30px rgba(11, 7, 28, 0.6), 
-              0 0 20px rgba(164, 140, 255, 0.1); /* 外發光 */
+  transform: translateY(-6px);
+  background: rgba(164, 140, 255, 0.03);    /* 懸停時增加微弱的星簇紫光背景 */
+  border-color: rgba(164, 140, 255, 0.3);   /* 加強邊框顏色，形成光暈效果 */
+  /* 雙重發光矩陣：底層深邃陰影 + 外圍星曜紫光暈 */
+  box-shadow: 0 15px 35px rgba(11, 7, 28, 0.7), 
+              0 0 25px rgba(164, 140, 255, 0.15);
 }
 
-/* 針對無連結卡片：指標退回預設 */
-.team-card.static-card {
-  cursor: default;
+/* 在右下角悄悄加入一個隱藏的箭頭暗示，懸停時現形，填補右側空洞 */
+.team-card.clickable-card::after {
+  content: "→";
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  color: var(--accent-star-glow, #a48cff);
+  font-size: 1.25rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
 }
 
-/* 頭像外層圓形剪裁封裝 */
+.team-card.clickable-card:hover::after {
+  opacity: 0.8;
+  transform: translateX(0);
+}
+
+/* 頭像容器與鏡頭 Scale 增強 */
 .avatar-wrapper {
-  width: 90px;
-  height: 90px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 1.5rem;
-  border: 2px solid rgba(164, 140, 255, 0.1);
-  transition: border-color 0.4s ease;
+  flex-shrink: 0; /* ✦ 絕對防禦：防止縮放時頭像被文字擠壓變形 ✦ */
+  border: 2px solid rgba(164, 140, 255, 0.12);
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(164, 140, 255, 0.05);
 }
 
 .team-card.clickable-card:hover .avatar-wrapper {
-  border-color: var(--accent-star-glow, #a48cff); /* 懸停時頭像框跟著亮起 */
+  border-color: var(--accent-star-glow, #a48cff);
+  box-shadow: 0 0 20px rgba(164, 140, 255, 0.3);
 }
 
-/* 頭像圖片本體與拉近效果 */
 .member-avatar {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 確保頭像不縮放變形 */
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .team-card.clickable-card:hover .member-avatar {
-  transform: scale(1.08); /* ✦ 點擊全卡面時，頭像微幅拉近 ✦ */
+  transform: scale(1.1); /* 懸停時頭像優雅放大 */
 }
 
-/* 文字排版容器 */
+/* 右側文字排版矩陣 */
 .member-info {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
 }
 
 .team-name {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.4rem; /* 放大名字，定錨視覺第一落點 */
+  font-weight: 700;
   color: var(--text-stellar-white, #ffffff);
   margin: 0;
+  letter-spacing: 1px;
 }
 
+/* 職稱排版優化：利用 inline-block 形成氣泡或加強分段感 */
 .team-role {
-  font-size: 0.9rem;
-  color: var(--accent-star-glow, #a48cff);
+  font-size: 0.88rem;
+  color: rgba(164, 140, 255, 0.85); /* 星簇主題紫 */
   line-height: 1.6;
   margin: 0;
-  opacity: 0.85;
+  word-break: break-word; /* 防止極長職稱破版 */
+  letter-spacing: 0.5px;
+}
+
+/* RWD 行動端防禦：當螢幕太小時自動退回縱向排列，防止寬度不足 */
+@media (max-width: 768px) {
+  #team-grid {
+    grid-template-columns: 1fr; /* 手機端直接單列滿版 */
+    gap: 1.5rem;
+  }
+  
+  .team-card {
+    flex-direction: column; /* 退回上下排列 */
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .member-info {
+    align-items: center;
+  }
 }
